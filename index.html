@@ -1,0 +1,83 @@
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Year', 'Images per Day (B)', 'Predicted Images per Day (B)'],
+          [2009, 100, null], [2010, 400, null], [2011, 500, null], [2012, 700, null], [2013, 1250, null], [2014, 2000, null], [2015, 3200, null], [2016, null, 5900], [2016.5, null, 7559.532]
+        ]);
+
+        var options = {
+        // title: 'Number of Images Uploaded to the Internet per Day \n\n\n',
+        // titlePosition: 'none',
+        subtitle: 'Based on KPCB Internet Trends Report, Slide 90 of http://www.kpcb.com/blog/2016-internet-trends-report',
+        legendTextStyle: { color: 'black', fontSize: 12  },
+        // titleTextStyle: { color: '#e0440e', fontSize: 20, width: 1000},
+        hAxis: {title: 'Year',titleTextStyle: { color: 'black', fontSize: 15 }, minValue: 2009, maxValue: 2017, format:'####', textStyle:{color: 'black'}, gridlines: {color: 'grey'}, baselineColor: 'grey'},
+        vAxis: {title: 'Images per Day (B)',titleTextStyle: { color: 'black' , fontSize: 15}, minValue: 100, maxValue: 8000, textStyle:{color: 'black'}, gridlines: {color: 'grey'}},
+        chartArea: {left:'140', top:'40', width:'480',height:'460'},
+        backgroundColor:'e9e9e9',
+        colors: ['black', '#0080ff'],
+        trendlines: {
+          0: {
+            type: 'exponential',
+            showR2: true,
+            visibleInLegend: true,
+            opacity: 0.5,
+            color: '#e0440e',
+
+          }
+        },
+        height:600,
+        width:850
+        };
+      var chart = new google.visualization.ScatterChart(document.getElementById('chart_div'));
+      chart.draw(data, options);
+
+    }
+
+    </script>
+    <style>
+    #chart_holder {
+      background-color: e9e9e9;
+      width: 850px;
+    }
+    #chart_exp {
+      display: block;
+      background-color: e9e9e9;
+      width: 750px;
+      height: 50px;
+      text-align: center;
+      padding-right: 100px;
+
+      /*padding-left: 90px;*/
+    }
+    #title {
+      display: block;
+      background-color: e9e9e9;
+      width: 780px;
+      height: 50px;
+      font-size: 30px;
+      padding-right: 70px;
+      padding-top: 20px;
+      text-align: center;
+      color: e0440e;
+      font-weight: bold;
+    }
+    </style>
+ </head>
+
+ <body>
+   <div id="chart_holder">
+     <div id="title">Number of Images Uploaded to the Internet per Day</div>
+      <div id="chart_div"></div>
+      <div id="chart_exp">Based on KPCB Internet Trends Report, Slide 90 of <a href="http://www.kpcb.com/blog/2016-internet-trends-report">2016 Internet Trends Report</a>
+      <br />
+      *All data is approximate</div>
+   </div>
+
+ </body>
+</html>
